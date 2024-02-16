@@ -54,4 +54,7 @@ class App(ctk.CTk):
         config["script_path"] = self.script_selector.get_value()
         
         if self._valid_configurations(config):
-            create_executable_from_script(config)
+            try:
+                create_executable_from_script(config)
+            except Exception as e:
+                print(f"Exception occurred: {str(e)}")
