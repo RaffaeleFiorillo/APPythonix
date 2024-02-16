@@ -16,7 +16,7 @@ APPythonix is meant to be a simple and compact tool to use in the vast majority 
 
 # Concept Design
 The image bellow represents the *concept desingn* that I created as a guide for APPythonix. The frameworks used to create it may turn the final product very different. Maybe some day I will be able to accurately replicate the desing.
-![GUI demo](https://github.com/RaffaeleFiorillo/APPythonix/assets/75253335/ab18c255-674a-46ba-90d4-64b23abdd4da)
+![GUI demo](https://github.com/RaffaeleFiorillo/APPythonix/assets/75253335/d59a921e-c893-4d96-a19f-f53f9d1a5e48)
 
 # Tools and Frameworks:
  - [Pyinstaller](https://github.com/pyinstaller/pyinstaller): For the creation of the .exe/.app files based on python code;
