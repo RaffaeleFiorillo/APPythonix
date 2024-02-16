@@ -61,7 +61,7 @@ class ConfigurationOptions:
 			"new_path": self.app_new_dir_input.get_value(),
 			"one_file": self.one_file_checkbox.get_value(),
 			"no_console": self.no_console_checkbox.get_value(),
-			"admin_only": False if platform.system() == "Windows" else self.admin_only_checkbox.get_value(),
+			"admin_only": False if platform.system() != "Windows" else self.admin_only_checkbox.get_value(),
 			"del_specs": self.delete_specs_checkbox.get_value(),
 			"del_dist": self.delete_dist_checkbox.get_value(),
 			"del_build": self.delete_build_checkbox.get_value(),
