@@ -14,16 +14,6 @@ class TextInput:
 		te_label_font = ("Arial", 12, "bold")
 		self.te_label = ctk.CTkLabel(container, text=label, font=te_label_font, bg_color="black")
 		
-		# Making the Widget Optional -----------------------------------------------------------------------------------
-		if is_optional:
-			self.toggle_button = ctk.CTkSwitch(container, text="", width=15, height=10, switch_width=25, switch_height=10,
-			                                   command=self.toggle_widget_state)
-			self.toggle_button.place(x=x-5, y=y-53)
-			self.te_label.place(x=x+33, y=y-58)
-		else:
-			self.toggle_button = None
-			self.te_label.place(x=x+10, y=y-45)
-		
 		# Text Input Area (te) -----------------------------------------------------------------------------------------
 		te_font = ("Arial", 12, "bold")
 		self.text_entry = tk.Entry(container, bg="#454545", fg="white", bd=0, font=te_font, width=self.te_width,
@@ -35,6 +25,17 @@ class TextInput:
 			self.browse_button = FolderBrowser(container, x+433, y, self.browse_file)
 		self.erase_button = EraseEntryButton(container, x + 460, y, self.erase_entry)
 		self.info_button = InfoHoover(container, x+485, y, info)
+		
+		# Making the Widget Optional -----------------------------------------------------------------------------------
+		if is_optional:
+			self.toggle_button = ctk.CTkSwitch(container, text="", width=15, height=10, switch_width=25, switch_height=10,
+			                                   command=self.toggle_widget_state)
+			self.toggle_button.place(x=x-5, y=y-53)
+			self.te_label.place(x=x+33, y=y-58)
+			self.toggle_widget_state()  # the optional widget is by default disabled
+		else:
+			self.toggle_button = None
+			self.te_label.place(x=x+10, y=y-45)
 
 	def browse_file(self):
 		file_path = filedialog.askopenfilename()
@@ -42,7 +43,7 @@ class TextInput:
 		self.text_entry.insert(0, file_path)
 		
 	def toggle_widget_state(self):
-		if self.toggle_button.get() == 1:
+		if self.toggle_button.get() == 0:
 			self.text_entry.config(state="disabled", disabledbackground="#222222")
 			self.browse_button.disable()
 			self.erase_button.disable()
@@ -56,6 +57,6 @@ class TextInput:
 	
 	def get_value(self):
 		if self.toggle_button is not None:
-				if self.toggle_button.get() == 1:
+				if self.toggle_button.get() == 0:
 					return ""
 		return self.text_entry.get()
