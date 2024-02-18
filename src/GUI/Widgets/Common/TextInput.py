@@ -7,7 +7,7 @@ from .EraseEntryButton import EraseEntryButton
 
 
 class TextInput:
-	def __init__(self, container, label, x, y, info, is_optional=False, enable_browsing=False):
+	def __init__(self, container, label, x, y, info, is_optional=False, enable_browsing=False, is_file_browsing=False):
 		self.te_width = 56
 		
 		# Script Path (Directory) Entry aka -> spe ---------------------------------------------------------------------
@@ -22,7 +22,8 @@ class TextInput:
 		
 		# Buttons ------------------------------------------------------------------------------------------------------
 		if enable_browsing:
-			self.browse_button = FolderBrowser(container, x+433, y, self.browse_file)
+			browsing_function = self.browse_file if is_file_browsing else self.browse_folder
+			self.browse_button = FolderBrowser(container, x+433, y, browsing_function)
 		self.erase_button = EraseEntryButton(container, x + 460, y, self.erase_entry)
 		self.info_button = InfoHoover(container, x+485, y, info)
 		
@@ -41,6 +42,11 @@ class TextInput:
 		file_path = filedialog.askopenfilename()
 		self.text_entry.delete(0, ctk.END)
 		self.text_entry.insert(0, file_path)
+		
+	def browse_folder(self):
+		folder_path = filedialog.askdirectory()
+		self.text_entry.delete(0, tk.END)
+		self.text_entry.insert(0, folder_path)
 		
 	def toggle_widget_state(self):
 		if self.toggle_button.get() == 0:

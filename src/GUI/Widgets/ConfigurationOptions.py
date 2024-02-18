@@ -22,7 +22,8 @@ class ConfigurationOptions:
 		
 		icon_input_info = "The path to the .ico file that will be used as the icon of the .exe/.app." \
 		                  "\nBy default uses the pyinstaller default icon."
-		self.app_icon_dir_input = C.TextInput(app, "Executable Icon", x+20, y+78, icon_input_info, enable_browsing=True)
+		self.app_icon_dir_input = C.TextInput(app, "Executable Icon", x+20, y+78, icon_input_info,
+		                                      enable_browsing=True, is_file_browsing=True)
 		
 		n_dir_info = "You can select a new location in case you want the .exe/.app file to be created somewhere else." \
                      "\nBy default, the file is created in the same folder as the script."
@@ -46,13 +47,13 @@ class ConfigurationOptions:
 		self.delete_specs_checkbox = C.OptionCheckbox(app, x+150, y+200, "Delete specs (File)", delete_specs_info)
 		self.delete_specs_checkbox.info_button.button.place(x=x+180)
 		
-		delete_dist_info = "Deletes the 'dist' folder after the conversion of the script has completed."
+		"""delete_dist_info = "Deletes the 'dist' folder after the conversion of the script has completed."
 		self.delete_dist_checkbox = C.OptionCheckbox(app, x+150, y+240, "Delete dist (Folder)", delete_dist_info)
 		self.delete_dist_checkbox.info_button.button.place(x=x+180, y=y+250)
 		
 		delete_build_info = "Deletes the 'build' folder after the conversion of the script has completed."
 		self.delete_build_checkbox = C.OptionCheckbox(app, x+150, y+280, "Delete build (Folder)", delete_build_info)
-		self.delete_build_checkbox.info_button.button.place(x=x+180, y=y+300)
+		self.delete_build_checkbox.info_button.button.place(x=x+180, y=y+300)"""
 		
 	def get_configurations(self) -> {str: object}:
 		return {
@@ -63,7 +64,8 @@ class ConfigurationOptions:
 			"no_console": self.no_console_checkbox.get_value(),
 			"admin_only": False if platform.system() != "Windows" else self.admin_only_checkbox.get_value(),
 			"del_specs": self.delete_specs_checkbox.get_value(),
-			"del_dist": self.delete_dist_checkbox.get_value(),
-			"del_build": self.delete_build_checkbox.get_value(),
+			"del_dist": True,  # self.delete_dist_checkbox.get_value(),
+			"del_build": True,  # self.delete_build_checkbox.get_value(),
+			"file_extension": "exe" if platform.system() == "Windows" else "app"
 		}
 		
