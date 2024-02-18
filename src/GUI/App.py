@@ -9,14 +9,13 @@ import src.Utils.Validations as V
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
-        print("Instance of APPythonix Created")
         
         # App Appearance -----------------------------------------------------------------------------------------------
         self.geometry("900x450")  # The app has a width of 1100pixels and a height of 600 pixels
         self.resizable(width=False, height=False)  # the app is not resizable
-        self.iconbitmap("assets/APPythonix.ico")  # setting the icon of the window
-        self.title("APPythonix (Beta)")
-        self.configure(background="black")
+        self.iconbitmap("assets/APPythonix.ico")   # setting the icon of the window
+        self.title("APPythonix (Beta)")            # name of the App
+        self.configure(background="black")         # background color
         
         # Elements for Selecting Python Script -------------------------------------------------------------------------
         self.script_selector = W.ScriptSelector(self, 100, 15)
@@ -29,11 +28,9 @@ class App(ctk.CTk):
         
         # Conversion Button (the main button) --------------------------------------------------------------------------
         W.ConversionButton(self, 360, 380, self._convert_script)
-        self.mainloop()
         
     @staticmethod
     def _show_error_popup(message):
-        # ctk.CTk().withdraw()  # Hide the main window
         messagebox.showerror("Error", message)
     
     def _valid_configurations(self, config) -> bool:
@@ -56,9 +53,7 @@ class App(ctk.CTk):
         return messagebox.askyesno("Confirmation", f"{confirmation_message}.\n Are you sure you want to proceed?")
     
     def _obtain_all_necessary_user_confirmation(self, config) -> bool:
-        print("\n\n Confirmation function")
         if not config["one_file"] and os.path.exists(f"{config['destination_folder']}/{config['file_name']}"):
-            print(" Confirmation function - Should ask confirmation")
             message = "You are creating the app in the form of a folder (*.exe/.app* + dependencies).\n" \
                       "A folder with the same name already exists in the destination directory.\n" \
                       "To avoid conflicts, the existing folder will be deleted and replaced by the new one"
@@ -67,8 +62,10 @@ class App(ctk.CTk):
         return True
     
     def _get_configurations(self):
+        # 1st-> Group the configurations dispersed from all the widgets of in one dictionary
         config = self.configuration_options.get_configurations()
         
+        # 2nd-> Make adjustments to the data and prepare it for use
         config["script_path"] = self.script_selector.get_value()
         script_folder = os.path.dirname(config["script_path"])
         if config["file_name"] == "":
@@ -78,14 +75,19 @@ class App(ctk.CTk):
         config["script_folder"] = script_folder
         config["destination_folder"] = config["new_path"] if config["new_path"] != "" else script_folder
         
-        print(config)
+        # 3rd-> Return the configurations
         return config
     
     def _convert_script(self):
+        # 1st-> Obtain the configuration provided by the user to create the App
         config = self._get_configurations()
         
-        if self._valid_configurations(config) and self._obtain_all_necessary_user_confirmation(config):
-            try:
-                create_executable_from_script(config)
-            except Exception as e:
-                print(f"Exception occurred: {str(e)}")
+        # 2nd-> Validate that everything is correct with the configuration and avoid any potential conflict
+        if not self._valid_configurations(config) or not self._obtain_all_necessary_user_confirmation(config):
+            return None
+        
+        # 3rd-> Create the App
+        try:
+            create_executable_from_script(config)
+        except Exception as e:
+            self._show_error_popup(str(e))

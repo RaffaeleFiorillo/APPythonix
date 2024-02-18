@@ -160,3 +160,5 @@ cython_debug/
 #.idea/
 
 APPythonix (Beta)/
+assets/GUI demo.png
+assets/actual GUI.png

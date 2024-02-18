@@ -5,6 +5,8 @@ from customtkinter import filedialog
 
 class ScriptSelector:
 	def __init__(self, app, x, y):
+		canvas1 = tk.Canvas(background="#0000ff", highlightthickness=1, highlightbackground="#00ffff")
+		canvas1.place(x=x-5, y=y+40, width=837, height=42)
 		# Script Path (Directory) Entry aka -> spe ---------------------------------------------------------------------
 		spe_label_font = ("Arial", 22, "bold")
 		self.spe_label = ctk.CTkLabel(app, text="Select Your Python Script:", font=spe_label_font)

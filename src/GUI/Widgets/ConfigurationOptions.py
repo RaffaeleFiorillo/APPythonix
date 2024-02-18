@@ -8,6 +8,7 @@ class ConfigurationOptions:
 		self.width, self.height = 200, 200
 		
 		self.canvas = tk.Canvas(background="black")
+		self.canvas.rowconfigure(0, weight=3)
 		self.canvas.place(x=-5, y=y, width=570, height=360)
 		
 		# Create widgets to put inside the frame
@@ -55,6 +56,10 @@ class ConfigurationOptions:
 		self.delete_build_checkbox = C.OptionCheckbox(app, x+150, y+280, "Delete build (Folder)", delete_build_info)
 		self.delete_build_checkbox.info_button.button.place(x=x+180, y=y+300)"""
 		
+		# Radio Button -------------------------------------------------------------------------------------------------
+		self.debug_radio_button = C.LogInfoRadioButton(self.canvas, 320, 140)
+		# self.debug_radio_button.place(x=330, y=140)
+		
 	def get_configurations(self) -> {str: object}:
 		return {
 			"file_name": self.app_name_input.get_value(),
@@ -66,6 +71,8 @@ class ConfigurationOptions:
 			"del_specs": self.delete_specs_checkbox.get_value(),
 			"del_dist": True,  # self.delete_dist_checkbox.get_value(),
 			"del_build": True,  # self.delete_build_checkbox.get_value(),
+			"log_level": self.debug_radio_button.get_value(),
 			"file_extension": "exe" if platform.system() == "Windows" else "app"
+			
 		}
 		

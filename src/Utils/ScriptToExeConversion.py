@@ -114,6 +114,8 @@ def create_parameters_from_configurations(conf, destination_folder):
 	parameters.append("--noconsole") if conf["no_console"] else None
 	# Defining if a user should upgrade to administrator upon execution
 	parameters.append("--uac-admin") if conf["admin_only"] else None
+	# Defining the Log information type
+	parameters.append(f'--log-level="{conf["log_level"]}"')
 	# Delete the build folder after the process has finished if the user wants so
 	parameters.append("--clean") if conf["del_build"] else None
 	# Trigger a necessary error to avoid some problems
@@ -164,4 +166,6 @@ def create_executable_from_script(conf):
 
 # 'del_specs': bool, -> Flag to know if the user wants the .specs file to be deleted after creating the app
 # 'del_dist': bool,  -> Flag to know if the user wants the dist folder to be deleted after creating the app
-# 'del_build': bool  -> Flag to know if the user wants the build folder to be deleted after creating the app
+# 'del_build': bool,  -> Flag to know if the user wants the build folder to be deleted after creating the app
+
+# 'log_level': str -> The type of information to be displayed while the app is being created
