@@ -25,7 +25,7 @@ APPythonix is built using the Pyinstaller tool. For this reason, it comes with t
 APPythonix is meant to be a simple and compact tool to use in the vast majority of cases, therefore it does not provide the full range of solutions and features available in Pyinstaller.  Future version of APPythonix will try to provide more complete solutions and will be evolving along side with Pyinstaller.
 
 # Concept Design
-The image bellow represents the *concept desingn* that I created as a guide for APPythonix. The frameworks used to create it may turn the final product very different. Maybe some day I will be able to accurately replicate the desing.
+The image bellow represents the *concept design* that I created as a guide for APPythonix. The frameworks used to create it may turn the final product very different. Maybe some day I will be able to accurately replicate the desing.
 ![GUI demo](https://github.com/RaffaeleFiorillo/APPythonix/assets/75253335/d59a921e-c893-4d96-a19f-f53f9d1a5e48)
 
 # Tools and Frameworks:
