@@ -1,7 +1,15 @@
 # APPythonix
-A tool designed to convert Python scripts to .exe files (Windows) or .app (Mac). It comes with a simple, compact and modern looking GUI.
+A tool designed to convert Python scripts to .exe files (Windows) or .app (Mac). It comes with a simple, compact and modern looking GUI. 
 ![actual GUI (18-02-2024)](https://github.com/RaffaeleFiorillo/APPythonix/assets/75253335/33773cbb-217b-4cda-ab61-f004e0e713d6)
 
+# How to Use:
+## Released Version:
+- 1st-> Download the zip file containing the release version [here](https://github.com/RaffaeleFiorillo/APPythonix/releases/download/APPythonix(v1.0)/APPythonix.v1.0.zip);
+- 2nd-> Extract the folder from the zip file;
+- 3rd-> Run the "APPythonix (vx.x.x).exe" file;
+## Code Version:
+- 1st-> Clone the repository;
+- 2nd-> Run the main.py file;
 
 # Features:
  - Converts a python project into an exe/app file;
